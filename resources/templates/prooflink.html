@@ -1,0 +1,11 @@
+{% extends "templates/base.html" %}
+{% block content %}
+
+
+<div>{{prooflink.timestamp|date:"yyyy-MM-dd HH:mm"}}</div>
+<div>{{prooflink.url}} was {% ifequal status true %}up{% else %}down{% endifequal %}!</div>
+
+<div>Proof link:</div>
+<a href="/prooflink?hashcode={{prooflink.hashcode}}">/prooflink?hashcode={{prooflink.hashcode}}</a>
+
+{% endblock content %}
