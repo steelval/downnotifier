@@ -5,20 +5,18 @@
 
 (defdb db schema/db-spec)
 
-(defentity users)
+(defentity prooflinks)
 
-(defn create-user [user]
-  (insert users
-          (values user)))
+(defn create-prooflink
+  [url hashcode status]
+  (insert prooflinks
+          (values {:url url
+                   :hashcode hashcode
+                   :timestamp (new java.util.Date)
+                   :status status})))
 
-(defn update-user [id first-name last-name email]
-  (update users
-  (set-fields {:first_name first-name
-               :last_name last-name
-               :email email})
-  (where {:id id})))
+(defn get-prooflink [hashcode]
+  (first (select prooflinks
+    (fields :hashcode :status :url :timestamp)
+    (where {:hashcode hashcode}))))
 
-(defn get-user [id]
-  (first (select users
-                 (where {:id id})
-                 (limit 1))))

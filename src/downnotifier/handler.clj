@@ -10,7 +10,8 @@
             [taoensso.timbre.appenders.rotor :as rotor]
             [selmer.parser :as parser]
             [environ.core :refer [env]]
-            [cronj.core :as cronj]))
+            [cronj.core :as cronj]
+            [downnotifier.db.schema :as schema]))
 
 (defroutes app-routes
   (route/resources "/")
@@ -34,9 +35,11 @@
     [:shared-appender-config :rotor]
     {:path "downnotifier.log" :max-size (* 512 1024) :backlog 10})
 
-  (if (env :dev) (parser/cache-off!))
-  ;;start the expired session cleanup job
-  (cronj/start! session-manager/cleanup-job)
+  (if (env :selmer-dev) (parser/cache-off!))
+
+  ;;initialize the database if needed
+  (if-not (schema/initialized?) (schema/create-tables))
+
   (timbre/info "downnotifier started successfully"))
 
 (defn destroy

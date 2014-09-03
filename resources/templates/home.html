@@ -1,14 +1,31 @@
 {% extends "templates/base.html" %}
 {% block content %}
-  <div class="jumbotron">
-    <h1>Welcome to downnotifier</h1>
-    <p>Time to start building your site!</p>
-    <p><a class="btn btn-primary btn-lg" href="http://luminusweb.net">Learn more &raquo;</a></p>
-  </div>
+ <div class="jumbotron">
+    <h1>Down Notifier</h1>
+ </div>
 
-  <div class="row-fluid">
+ <div class="row-fluid">
+     <div>
+       {% if status %}
+         <p>{{url}} is {% ifequal status "200" %}up{% else %}down{% endifequal %}!</p>
+
+         <p><a href="/create-prooflink?url={{url}}">Get proof link</a></p>
+
+         <p>Check another?</p>
+       {% else %}
+         <div>Is it down?</div>
+       {% endif %}
+         <form action="/" method="POST">
+             <div><input type="text" value="{{url}}" name="url" style="color:grey"></div>
+             <div><input type="submit" value="Check"></div>
+         </form>
+     </div>
+
     <div class="span8">
-    {{content|safe}}
+      {% if error %}
+        <p class="error">{{error}}</p>
+      {% endif %}
     </div>
-  </div>
+
+ </div>
 {% endblock %}

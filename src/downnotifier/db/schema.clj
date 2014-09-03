@@ -17,22 +17,30 @@
   []
   (.exists (new java.io.File (str (io/resource-path) db-store ".mv.db"))))
 
-(defn create-users-table
-  []
+
+(defn create-users-table []
   (sql/db-do-commands
-    db-spec
-    (sql/create-table-ddl
-      :users
-      [:id "varchar(20) PRIMARY KEY"]
-      [:first_name "varchar(30)"]
-      [:last_name "varchar(30)"]
-      [:email "varchar(30)"]
-      [:admin :boolean]
-      [:last_login :time]
-      [:is_active :boolean]
-      [:pass "varchar(100)"])))
+   db-spec
+   (sql/create-table-ddl
+    :users
+    [:id "INTEGER PRIMARY KEY AUTO_INCREMENT"]
+    [:email "varchar(30)"])))
+
+
+(defn create-prooflinks-table []
+  (sql/db-do-commands
+   db-spec
+   (sql/create-table-ddl
+    :prooflinks
+    [:id "INTEGER PRIMARY KEY AUTO_INCREMENT"]
+    [:url "varchar(200)"]
+    [:hashcode "varchar(8)"]
+    [:timestamp :timestamp]
+    [:status :boolean])))
 
 (defn create-tables
   "creates the database tables used by the application"
   []
-  (create-users-table))
+  (create-users-table)
+  (create-prooflinks-table))
+

@@ -46,7 +46,10 @@
    [org.clojure/clojure "1.6.0"]
    [ring-server "0.3.1"]
    [com.taoensso/tower "2.0.2"]
-   [lib-noir "0.8.4"]]
+   [lib-noir "0.8.4"]
+   [http-kit "2.1.16"]
+   [digest "1.4.4"]
+   [clj-time "0.8.0"]]
   :repl-options
   {:init-ns downnotifier.repl}
   :min-lein-version "2.0.0")
