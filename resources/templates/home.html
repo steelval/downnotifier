@@ -13,19 +13,53 @@
 
          <p>Check another?</p>
        {% else %}
-         <div>Is it down?</div>
+         <p id="is_it_down">Is it down?</p>
        {% endif %}
-         <form action="/" method="POST">
-             <div><input type="text" value="{{url}}" name="url" style="color:grey"></div>
+         <form action="/" method="POST" onsubmit="return check()">
+             <div><input id="url_input" type="text" value="{% if url %}{{url}}{% else %}http://google.com{% endif %}" name="url" onClick="changeCol(this)" style="color:grey"></div>
+
+             <div id="url_error" style="display:none;">***<span id="url_name"></span> - it doesn't look like a URL***</div>
+
              <div><input type="submit" value="Check"></div>
          </form>
      </div>
 
-    <div class="span8">
+    <div>
       {% if error %}
         <p class="error">{{error}}</p>
       {% endif %}
     </div>
 
  </div>
+{% endblock %}
+
+{% block page-scripts %}
+<script type="text/javascript">
+        // everything made just via javascript to not load jquery...
+        function is_valid_url(url) {
+             return url.match(/^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/);
+        }
+        function check(){
+            var url_error = document.getElementById("url_error");
+            url_error.style.display = 'none';
+            var url = document.getElementById("url_input").value;
+
+            if ((url.slice(0,7) != "http://") && (url.slice(0,8) != "https://")){
+                url = "http://" + url;
+                document.getElementById("url_input").value = url;
+            }
+
+            if (!(is_valid_url(url))) {
+                url_error.style.display = 'block';
+                document.getElementById("url_name").innerHTML = url;
+                return false;
+            }
+
+            return true;
+        }
+        function changeCol (item){
+            item.style.color = 'black';
+            item.setAttribute("value", "");
+        }
+    </script>
 {% endblock %}
