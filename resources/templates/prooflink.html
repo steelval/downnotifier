@@ -3,8 +3,9 @@
 
 
 <div>{{prooflink.timestamp|date:"yyyy-MM-dd HH:mm"}}</div>
-<div>{{prooflink.url}} was {% ifequal status true %}up{% else %}down{% endifequal %}!</div>
+<div>{{prooflink.url}} was {% ifequal status true %}UP{% else %}DOWN{% endifequal %}!</div>
 
+<br/>
 <div>Proof link:</div>
 <a href="/prooflink?hashcode={{prooflink.hashcode}}">/prooflink?hashcode={{prooflink.hashcode}}</a>
 

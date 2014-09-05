@@ -5,32 +5,34 @@
     <title>Downnotifier</title>
   </head>
   <body>
-    <!-- navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="{{servlet-context}}/">downnotifier</a>
+      <div class="head-block">
+        <div class="main-right-block right">
+            <!-- navbar -->
+            <div class="navbar navbar-inverse navbar-fixed-top">
+              <div class="container">
+                <div class="navbar-collapse collapse ">
+                  <ul class="nav navbar-nav">
+                    <li class="{{home-selected}}"><a href="{{servlet-context}}/">Home</a></li>
+                    <li class="{{about-selected}}"><a href="{{servlet-context}}/about">About</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
         </div>
-        <div class="navbar-collapse collapse ">
-          <ul class="nav navbar-nav">
-            <li class="{{home-selected}}"><a href="{{servlet-context}}/">Home</a></li>
-            <li class="{{about-selected}}"><a href="{{servlet-context}}/about">About</a></li>
-          </ul>
+        <div class="main-left-block left">
+            <h1><a href="/" class="main-title">Down Notifier</a></h1>
         </div>
+        <div class="clear"></div>
       </div>
-    </div>
-
     <div class="container">
-      {% block content %}
-      {% endblock %}
+        <div class="main-right-block right"></div>
+        <div class="main-left-block left">
+        {% block content %}
+        {% endblock %}
+        </div>
     </div>
-    <!-- scripts and styles -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    {% style "/css/screen.css" %}
 
-    <script src="//code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    {% style "/css/screen.css" %}
 
     <script type="text/javascript">
       var context = "{{servlet-context}}";

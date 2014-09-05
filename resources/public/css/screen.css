@@ -1,6 +1,47 @@
 html,
 body {
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    height: 100%;
-    padding-top: 40px;
+	font-family: "Arno Pro Caption";
+  height: 100%;
+  padding-top: 40px;
+  width: 960px;
+  margin: 0 auto;
+  color:#4d4d4d;
 }
+
+a:link, a:visited {
+  color: #0080ff;
+  font-family: "Arno Pro Caption";
+}
+
+.container {font-size: 2em;}
+
+.clear {clear:both;}
+.left {float:left;}
+.right {float:right;}
+
+.main-left-block {width: 80%; text-align: center;}
+.main-left-block .main-title {
+  text-decoration:none;
+  font-size: 1.7em;
+  color:#4d4d4d;
+}
+
+.main-left-block .icon {
+  width: 86px;
+  height: 86px;
+  background-image: url(/img/icon.png);
+}
+
+.main-right-block {width: 20%;}
+
+.isit {
+  margin-bottom:10px;
+}
+
+input[type="text"] {
+  border: 1px solid #cccccc;
+  font-size: 30px;
+  padding: 4px 6px;
+  width: 50%;
+}
+
